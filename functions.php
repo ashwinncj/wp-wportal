@@ -1,13 +1,31 @@
 <?php
-
 //Plugin basic functions here
+
+add_action('wp_enqueue_scripts', 'plugin_styles');
+add_action('init', 'signon_function');
 
 function plugin_styles() {
     wp_register_style('radel-css', WPORTAL__PLUGIN_URL . '/assets/css/radel-css.css', false, '1.1', 'all');
     wp_enqueue_style('radel-css');
 }
 
-add_action('wp_enqueue_scripts', 'plugin_styles');
+function signon_function() {
+    if (isset($_POST['user_email']) && isset($_POST['user_password']) && isset($_POST['signon'])) {
+        $creds = array();
+        $creds['user_login'] = $_POST['user_email'];
+        $creds['user_password'] = $_POST['user_password'];
+        $creds['remember'] = FALSE;
+        $user = wp_signon($creds, false);
+        if (is_wp_error($user)) {
+            echo $user->get_error_message();
+        } else {
+            wp_redirect(admin_url());
+            exit();
+        }
+    } else {
+        
+    }
+}
 
 require_once WPORTAL__PLUGIN_DIR . '/shortcodes.php';
 
@@ -48,3 +66,13 @@ function radel_media_upload() {
     }
     return ob_get_clean();
 }
+
+//Automatic redirect to loginpage
+function my_page_template_redirect() {
+    if (!is_page('login') && !is_user_logged_in()) {
+        wp_redirect(home_url('/login/'));
+        die;
+    }
+}
+
+add_action('template_redirect', 'my_page_template_redirect');
