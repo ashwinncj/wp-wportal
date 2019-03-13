@@ -1,5 +1,4 @@
 <!--//Login form template-->
-
 <div class="wrap">
     <h3>Login to the site to continue.</h3>
     <form action="" method="POST">
