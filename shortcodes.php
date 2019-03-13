@@ -34,6 +34,8 @@ function register_function() {
             $user_id = wp_create_user($username, $_POST['user_password'], $_POST['user_email']);
             echo 'User Successfully Registered.';
             wp_logout();
+            $u = new WP_User($user_id);
+            $u->set_role('radelcustomer');
         } else {
             $random_password = __('User already exists.  Password inherited.');
             echo 'User Email Exists';
@@ -52,23 +54,14 @@ function test_function() {
             width: 30%;background-color: blue;height: 200px;border: 1px solid white;display: inline-block;
         }
         @media(max-width:567px){
-            .demand-stying{
+            .demand-sm-6{
                 width: 48%;background-color: blue;height: 200px;border: 1px solid white;display: inline-block;
             }
         }
     </style>
     <div class="wrap">
-        <div class="demand-stying"></div>
-        <div class="demand-stying"></div>
-        <div class="demand-stying"></div>
-        <div class="demand-stying"></div>
-        <div class="demand-stying"></div>
-        <div class="demand-stying"></div>
-        <div class="demand-stying"></div>
-        <div class="demand-stying"></div>
-        <div class="demand-stying"></div>
-        <div class="demand-stying"></div>
-        <div class="demand-stying"></div>
+        <div class="demand-sm-6 demand-stying"></div>
+        <div class="demand-sm-6 demand-stying"></div>
     </div>
     <?php
 

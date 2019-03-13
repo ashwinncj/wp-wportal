@@ -16,6 +16,7 @@ register_deactivation_hook(__FILE__, 'plugin_deactivation');
 function plugin_activation() {
     //echo 'STage Activated';
     update_option('portal_activated', 'yes');
+    add_role('radelcustomer','RADEL Customer',array('read'=>TRUE));
 }
 
 function plugin_deactivation() {
