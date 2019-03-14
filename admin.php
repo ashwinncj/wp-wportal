@@ -1,4 +1,5 @@
 <?php
+
 //Admin section functions included here
 
 add_action('admin_menu', 'wportal_menus');
@@ -9,23 +10,9 @@ function wportal_menus() {
 }
 
 function dashboard_function() {
-    ?>
-    <div class="wrap">
-        <h1>Warranty Portal</h1>
-        <?php
-        $content = get_option('special_content');
-        wp_editor($content, 'editor-id', $settings = array('textarea_rows' => '10'));
-        submit_button('Save', 'primary');
-        ?>
-    </div>
-    <?php
+    require_once WPORTAL__PLUGIN_DIR . './templates/dashboard-tpl.php';
 }
 
 function products_function() {
-    ?>
-    <div class="wrap">
-        <button onclick="open_media_uploader_multiple_images();">Media</button>
-    </div>
-    
-    <?php
+    require_once WPORTAL__PLUGIN_DIR . './templates/products-tpl.php';
 }
