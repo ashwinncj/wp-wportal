@@ -1,5 +1,4 @@
 <?php
-
 //Admin section functions included here
 
 add_action('admin_menu', 'wportal_menus');
@@ -23,5 +22,10 @@ function dashboard_function() {
 }
 
 function products_function() {
+    ?>
+    <div class="wrap">
+        <button onclick="open_media_uploader_multiple_images();">Media</button>
+    </div>
     
+    <?php
 }

@@ -3,10 +3,14 @@
 
 require_once WPORTAL__PLUGIN_DIR . '/shortcodes.php';
 add_action('wp_enqueue_scripts', 'plugin_styles');
+add_action('admin_enqueue_scripts', 'plugin_styles');
 
 function plugin_styles() {
     wp_register_style('radel-css', WPORTAL__PLUGIN_URL . '/assets/css/radel-css.css', false, '1.1', 'all');
+    wp_register_script('media-uploader', WPORTAL__PLUGIN_URL . '/assets/js/media-uploader.js', false, '1.1', 'all');
     wp_enqueue_style('radel-css');
+    wp_enqueue_script('media-uploader');
+    wp_enqueue_media();
 }
 
 function plugin_activation() {
@@ -17,6 +21,9 @@ function plugin_activation() {
     $role->add_cap('edit_radelcustomer');
     $role = get_role('administrator');
     $role->add_cap('edit_radelcustomer');
+    global $wpdb;
+    $sql = 'CREATE TABLE IF NOT EXISTS `wp_wportal_products` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(150) NOT NULL , `image` VARCHAR(200) NOT NULL , `sku` VARCHAR(50) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;';
+    $results = $wpdb->get_results($sql);
 }
 
 function plugin_deactivation() {
