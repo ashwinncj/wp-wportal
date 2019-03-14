@@ -1,33 +1,47 @@
 <?php
 //Plugin basic functions here
 
+require_once WPORTAL__PLUGIN_DIR . '/shortcodes.php';
 add_action('wp_enqueue_scripts', 'plugin_styles');
-add_action('init', 'signon_function');
 
 function plugin_styles() {
     wp_register_style('radel-css', WPORTAL__PLUGIN_URL . '/assets/css/radel-css.css', false, '1.1', 'all');
     wp_enqueue_style('radel-css');
 }
 
-function signon_function() {
-    if (isset($_POST['user_email']) && isset($_POST['user_password']) && isset($_POST['signon'])) {
-        $creds = array();
-        $creds['user_login'] = $_POST['user_email'];
-        $creds['user_password'] = $_POST['user_password'];
-        $creds['remember'] = FALSE;
-        $user = wp_signon($creds, false);
-        if (is_wp_error($user)) {
-            echo $user->get_error_message();
-        } else {
-            wp_redirect(admin_url());
-            exit();
-        }
-    } else {
-        
+function plugin_activation() {
+    update_option('portal_activated', 'yes');
+    add_role('radelcustomer', 'RADEL Customer', array('read' => TRUE));
+    add_role('csr', 'RADEL CSR', array('read' => TRUE));
+    $role = get_role('csr');
+    $role->add_cap('edit_radelcustomer');
+    $role = get_role('administrator');
+    $role->add_cap('edit_radelcustomer');
+}
+
+function plugin_deactivation() {
+    update_option('portal_activated', 'no');
+}
+
+//Removing admin bar
+add_action('after_setup_theme', 'remove_admin_bar');
+
+function remove_admin_bar() {
+    if (!current_user_can('administrator') && !is_admin()) {
+        show_admin_bar(false);
     }
 }
 
-require_once WPORTAL__PLUGIN_DIR . '/shortcodes.php';
+//No admin access to customer and CSR
+add_action('admin_init', 'no_admin_access', 100);
+
+function no_admin_access() {
+    $user = wp_get_current_user();
+    if (in_array('csr', (array) $user->roles) || in_array('radelcustomer', (array) $user->roles)) {
+        wp_redirect(home_url());
+        exit();
+    }
+}
 
 //RADEL Upload files code
 
@@ -75,4 +89,4 @@ function my_page_template_redirect() {
     }
 }
 
-add_action('template_redirect', 'my_page_template_redirect');
+//add_action('template_redirect', 'my_page_template_redirect');
