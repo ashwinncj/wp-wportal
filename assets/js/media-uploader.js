@@ -13,7 +13,13 @@ function open_media_uploader_image() {
         var image_url = json.url;
         var image_caption = json.caption;
         var image_title = json.title;
-        console.log(image_url);
+        //console.log(image_url);
+        media = {
+            url: image_url,
+            caption: image_caption,
+            image_title: image_title
+        };
+        return media;
     });
 
     media_uploader.open();
@@ -35,7 +41,11 @@ function open_media_uploader_multiple_images() {
             var image_url = images[iii].changed.url;
             var image_caption = images[iii].changed.caption;
             var image_title = images[iii].changed.title;
-            image_urls[iii] = image_url;
+            image_urls[iii] = {
+                url: image_url,
+                caption: image_caption,
+                image_title: image_title
+            };
         }
         return(image_urls);
     });

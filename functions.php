@@ -8,8 +8,10 @@ add_action('admin_enqueue_scripts', 'plugin_styles');
 function plugin_styles() {
     wp_register_style('radel-css', WPORTAL__PLUGIN_URL . '/assets/css/radel-css.css', false, '1.1', 'all');
     wp_register_script('media-uploader', WPORTAL__PLUGIN_URL . '/assets/js/media-uploader.js', false, '1.1', 'all');
+    wp_register_script('radel-js', WPORTAL__PLUGIN_URL . '/assets/js/radel-js.js', false, '1.1', 'all');
     wp_enqueue_style('radel-css');
     wp_enqueue_script('media-uploader');
+    wp_enqueue_script('radel-js');
     wp_enqueue_media();
 }
 
@@ -21,8 +23,16 @@ function plugin_activation() {
     $role->add_cap('edit_radelcustomer');
     $role = get_role('administrator');
     $role->add_cap('edit_radelcustomer');
+    create_database();
+}
+
+function create_database() {
     global $wpdb;
-    $sql = 'CREATE TABLE IF NOT EXISTS `wp_wportal_products` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(150) NOT NULL , `image` VARCHAR(200) NOT NULL , `sku` VARCHAR(50) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;';
+    $sql = 'CREATE TABLE IF NOT EXISTS `wp_wportal_products` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(100) NOT NULL , `image` VARCHAR(200) NOT NULL , `warranty_type` VARCHAR(10) NOT NULL , `terms` VARCHAR(10) NOT NULL , `lifetime_warranty` BOOLEAN NOT NULL DEFAULT FALSE , `five_year_warranty` BOOLEAN NOT NULL DEFAULT FALSE , PRIMARY KEY (`id`)) ENGINE = InnoDB;';
+    $results = $wpdb->get_results($sql);
+    $sql = 'CREATE TABLE IF NOT EXISTS `wp_wportal_warranty` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(30) NOT NULL , `period` INT(15) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;';
+    $results = $wpdb->get_results($sql);
+    $sql = 'CREATE TABLE `wp_wportal_terms` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(50) NOT NULL , `document` VARCHAR(200) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;';
     $results = $wpdb->get_results($sql);
 }
 
