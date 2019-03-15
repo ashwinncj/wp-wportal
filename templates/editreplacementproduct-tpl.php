@@ -61,8 +61,6 @@
                 }
                 ?>
             </select><br>
-            <input type="checkbox" value="1" <?php echo $product_lifetime_warranty; ?> name="lifetime_warranty"><label>Lifetime Warranty</label><br>
-            <input type="checkbox" value="1" <?php echo $product_five_year_warranty; ?> name="five_year_warranty"><label>Five years Warranty</label><br>
             <input type="submit" value="Submit">
         </form>
     </div>

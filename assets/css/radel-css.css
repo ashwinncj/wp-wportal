@@ -8,3 +8,9 @@
 .edit-form input[type="text"]{
     width: 350px;
 }
+.edit-form label{
+    font-weight: bold;
+}
+.portal-title{
+    font-size: 16px;
+}

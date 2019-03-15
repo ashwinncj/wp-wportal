@@ -11,6 +11,10 @@ function wportal_menus() {
     add_submenu_page('warrany_portal_dashboard', 'Warranty Products', 'Products', 'manage_options', 'warranty_portal_products', 'products_function');
     add_submenu_page('warrany_portal_dashboard', 'Warranty Products', 'Edit product //temp', 'manage_options', 'wportal_product', 'edit_products_function');
 
+    //Replacement Products page
+    add_submenu_page('warrany_portal_dashboard', 'Warranty Products', 'Replacement Products', 'manage_options', 'warranty_portal_replacement_products', 'replacement_products_function');
+    add_submenu_page('warrany_portal_dashboard', 'Warranty Products', 'Edit replacement product //temp', 'manage_options', 'wportal_replacement_product', 'edit_replacement_products_function');
+
     //Warranty page
     add_submenu_page('warrany_portal_dashboard', 'Warranty Products', 'Warranty', 'manage_options', 'warranty_portal_warranty', 'warranty_function');
     add_submenu_page('warrany_portal_dashboard', 'Warranty Products', 'Edit warranty //temp', 'manage_options', 'wportal_warranty', 'edit_warranty_function');
@@ -30,6 +34,14 @@ function products_function() {
 
 function edit_products_function() {
     require_once WPORTAL__PLUGIN_DIR . './functions/editproduct.php';
+}
+
+function replacement_products_function() {
+    require_once WPORTAL__PLUGIN_DIR . './functions/replacementproducts.php';
+}
+
+function edit_replacement_products_function() {
+    require_once WPORTAL__PLUGIN_DIR . './functions/editreplacementproduct.php';
 }
 
 function warranty_function() {

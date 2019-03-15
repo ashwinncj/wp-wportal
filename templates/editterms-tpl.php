@@ -1,6 +1,6 @@
 <div class="wrap">
-    <h1>Ecopure Warranty Portal</h1>
-    <h2><?php echo $page_name; ?></h2>    
+    <h1>Ecopure Warranty Portal <span class="portal-title"> >> <?php echo $page_name; ?></span>    </h1>
+    <hr>
     <h4 class="vanish">
         <?php
         echo $error;
@@ -11,8 +11,10 @@
         <form method="post" action="">
             <input type="text" name="upload_terms" value="true" hidden>
             <input type="text" name="id" value="<?php echo $terms_id; ?>" hidden>
-            <input type="text" name="name" value="<?php echo $terms_name; ?>" placeholder="Terms and Conditions Name"><br>
-            <input type="text" id="terms-document" name="document" value="<?php echo $terms_document; ?>" placeholder="Document" hidden><br>
+            <label>Terms and Conditions Name</label><br>
+            <input type="text" name="name" value="<?php echo $terms_name; ?>" placeholder="Terms and Conditions Name"><br>            
+            <input type="text" id="terms-document" name="document" value="<?php echo $terms_document; ?>" placeholder="Document" hidden>
+            <label>Document</label><br>
             <button type="button" onclick="select_terms_document();">Select the document</button>
             <a target="blank" id="terms-document-link" href="<?php echo $terms_document; ?>"><?php echo $terms_document == '' ? '*No Document Selected' : $terms_document; ?></a><br>
             <input type="submit" value="Submit">
