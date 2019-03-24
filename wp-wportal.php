@@ -1,7 +1,7 @@
 <?php
 
 /**
-  Plugin Name: WP - WPortal
+  Plugin Name: Ecopure Warranty Portal
   Plugin URI:
   Description:
   Author: Ashwin Kumar C

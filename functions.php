@@ -17,12 +17,12 @@ function plugin_styles() {
 
 function plugin_activation() {
     update_option('portal_activated', 'yes');
-    add_role('radelcustomer', 'RADEL Customer', array('read' => TRUE));
-    add_role('csr', 'RADEL CSR', array('read' => TRUE));
+    add_role('ecopurecustomer', 'Ecopure Customer', array('read' => TRUE));
+    add_role('csr', 'Ecopure CSR', array('read' => TRUE));
     $role = get_role('csr');
-    $role->add_cap('edit_radelcustomer');
+    $role->add_cap('edit_ecopurecustomer');
     $role = get_role('administrator');
-    $role->add_cap('edit_radelcustomer');
+    $role->add_cap('edit_ecopurecustomer');
     create_database();
 }
 
@@ -34,7 +34,9 @@ function create_database() {
     $results = $wpdb->get_results($sql);
     $sql = 'CREATE TABLE IF NOT EXISTS `wp_wportal_warranty` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(30) NOT NULL , `period` INT(15) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;';
     $results = $wpdb->get_results($sql);
-    $sql = 'CREATE TABLE `wp_wportal_terms` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(50) NOT NULL , `document` VARCHAR(200) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;';
+    $sql = 'CREATE TABLE IF NOT EXISTS `wp_wportal_terms` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(50) NOT NULL , `document` VARCHAR(200) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;';
+    $results = $wpdb->get_results($sql);
+    $sql = 'CREATE TABLE IF NOT EXISTS `wp_wportal_customer_records` ( `id` INT NOT NULL AUTO_INCREMENT , `user_id` VARCHAR(20) NOT NULL , `product` INT(10) NOT NULL , `purchase_date` DATE NOT NULL , `install_date` DATE NOT NULL , `expiry_date` DATE NOT NULL , `serial_number` INT NOT NULL , `receipt` VARCHAR(200) NOT NULL , `added_on` DATE NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;';
     $results = $wpdb->get_results($sql);
 }
 
