@@ -1,3 +1,9 @@
+<?php
+global $wpdb;
+$sql = 'SELECT `id`,`name` FROM `wp_wportal_products` WHERE 1;';
+$results = $wpdb->get_results($sql);
+$user_id = get_current_user_id();
+?>
 <style>
     .c100{
         width: 100%;
@@ -14,15 +20,40 @@
         margin: auto;
         display: inline-block;
     }
+    #ecopure-register-product-form select{
+        width: 100%;
+    }
+    #ecopure-register-product-form label{
+        font-weight: bold;
+    }
+    #ecopure-register-product-form input[name="serial_number"]{
+        text-transform: uppercase;
+    }
+
 </style>
 <div class="wrap">
     <div class="c100">
-        <h2 style="text-align: center;">Ecopure Customer Panel</h2>
-        <h3 style="text-align: center;">Register new product</h3>        
-    </div>
-    <div class="c100">
-        <div class="c40" style="background-color: red;height: 100px;display: block">
-            
-        </div>
+        <form id="ecopure-register-product-form" action="" method="POST" enctype="multipart/form-data">
+            <input type="text" value="true" name="register_new_product" hidden required>
+            <input type="text" value="<?php echo $user_id; ?>" name="user_id" required hidden>
+            <label>Product</label><br>
+            <select name="product" required>
+                <option selected disabled value="">Select your product</option>
+                <?php
+                foreach ($results as $product) {
+                    echo "<option value='$product->id'>$product->name</option>";
+                }
+                ?>
+            </select><br>
+            <label>Purchase Date</label><br>
+            <input type="date" name="purchase_date" required><br>
+            <label>Install Date</label><br>
+            <input type="date" name="install_date" required><br>
+            <label>Serial Number</label><br>
+            <input type="text" name="serial_number" required><br>
+            <label>Purchase Receipt</label><br>
+            <input type="file" multiple="false" name="purchase_receipt" required><br>
+            <input type="submit" value="Register"><br>
+        </form>
     </div>
 </div>

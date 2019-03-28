@@ -9,19 +9,19 @@ function wportal_menus() {
 
     //Products page
     add_submenu_page('warrany_portal_dashboard', 'Warranty Products', 'Products', 'manage_options', 'warranty_portal_products', 'products_function');
-    add_submenu_page('warrany_portal_dashboard', 'Warranty Products', 'Edit product //temp', 'manage_options', 'wportal_product', 'edit_products_function');
+    add_submenu_page('', 'Warranty Products', 'Edit product //temp', 'manage_options', 'wportal_product', 'edit_products_function');
 
     //Replacement Products page
     add_submenu_page('warrany_portal_dashboard', 'Warranty Products', 'Replacement Products', 'manage_options', 'warranty_portal_replacement_products', 'replacement_products_function');
-    add_submenu_page('warrany_portal_dashboard', 'Warranty Products', 'Edit replacement product //temp', 'manage_options', 'wportal_replacement_product', 'edit_replacement_products_function');
+    add_submenu_page('', 'Warranty Products', 'Edit replacement product //temp', 'manage_options', 'wportal_replacement_product', 'edit_replacement_products_function');
 
     //Warranty page
     add_submenu_page('warrany_portal_dashboard', 'Warranty Products', 'Warranty', 'manage_options', 'warranty_portal_warranty', 'warranty_function');
-    add_submenu_page('warrany_portal_dashboard', 'Warranty Products', 'Edit warranty //temp', 'manage_options', 'wportal_warranty', 'edit_warranty_function');
+    add_submenu_page('', 'Warranty Products', 'Edit warranty //temp', 'manage_options', 'wportal_warranty', 'edit_warranty_function');
 
     //Terms and Conditions page
     add_submenu_page('warrany_portal_dashboard', 'Warranty Products', 'Terms and Conditions', 'manage_options', 'warranty_portal_terms', 'terms_function');
-    add_submenu_page('warrany_portal_dashboard', 'Warranty Products', 'Edit terms //temp', 'manage_options', 'wportal_terms', 'edit_terms_function');
+    add_submenu_page('', 'Warranty Products', 'Edit terms //temp', 'manage_options', 'wportal_terms', 'edit_terms_function');
 }
 
 function dashboard_function() {

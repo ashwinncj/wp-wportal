@@ -9,6 +9,8 @@ function plugin_styles() {
     wp_register_style('radel-css', WPORTAL__PLUGIN_URL . '/assets/css/radel-css.css', false, '1.1', 'all');
     wp_register_script('media-uploader', WPORTAL__PLUGIN_URL . '/assets/js/media-uploader.js', false, '1.1', 'all');
     wp_register_script('radel-js', WPORTAL__PLUGIN_URL . '/assets/js/radel-js.js', false, '1.1', 'all');
+    wp_register_script('datatables-js', WPORTAL__PLUGIN_URL . '/assets/js/datatables.min.js', false, '1.1', 'all');
+    wp_register_style('datatables-css', WPORTAL__PLUGIN_URL . '/assets/css/datatables.min.css', false, '1.1', 'all');
     wp_enqueue_style('radel-css');
     wp_enqueue_script('media-uploader');
     wp_enqueue_script('radel-js');
@@ -24,6 +26,8 @@ function plugin_activation() {
     $role = get_role('administrator');
     $role->add_cap('edit_ecopurecustomer');
     create_database();
+    create_directories();
+    create_files();
 }
 
 function create_database() {
@@ -36,8 +40,25 @@ function create_database() {
     $results = $wpdb->get_results($sql);
     $sql = 'CREATE TABLE IF NOT EXISTS `wp_wportal_terms` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(50) NOT NULL , `document` VARCHAR(200) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;';
     $results = $wpdb->get_results($sql);
-    $sql = 'CREATE TABLE IF NOT EXISTS `wp_wportal_customer_records` ( `id` INT NOT NULL AUTO_INCREMENT , `user_id` VARCHAR(20) NOT NULL , `product` INT(10) NOT NULL , `purchase_date` DATE NOT NULL , `install_date` DATE NOT NULL , `expiry_date` DATE NOT NULL , `serial_number` INT NOT NULL , `receipt` VARCHAR(200) NOT NULL , `added_on` DATE NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;';
+    $sql = 'CREATE TABLE IF NOT EXISTS `wp_wportal_customer_records` ( `id` INT NOT NULL AUTO_INCREMENT , `user_id` VARCHAR(20) NOT NULL , `product` INT(10) NOT NULL , `purchase_date` DATE NOT NULL , `install_date` DATE NOT NULL , `expiry_date` DATE NOT NULL , `serial_number` VARCHAR(100) NOT NULL , `receipt` VARCHAR(200) NOT NULL , `added_on` DATETIME NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;';
     $results = $wpdb->get_results($sql);
+}
+
+function create_directories() {
+    if (!file_exists(WPORTAL__PRIVATE_DIR)) {
+        mkdir(WPORTAL__PRIVATE_DIR);
+    }
+}
+
+function create_files() {
+    $myfile = fopen(WPORTAL__PRIVATE_DIR . "/.htaccess", "w");
+    $txt = "order deny,allow\n";
+    fwrite($myfile, $txt);
+    $txt = "deny from all\n";
+    fwrite($myfile, $txt);
+    $txt = "allow from localhost ::1\n";
+    fwrite($myfile, $txt);
+    fclose($myfile);
 }
 
 function plugin_deactivation() {
