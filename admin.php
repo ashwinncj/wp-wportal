@@ -22,6 +22,9 @@ function wportal_menus() {
     //Terms and Conditions page
     add_submenu_page('warrany_portal_dashboard', 'Warranty Products', 'Terms and Conditions', 'manage_options', 'warranty_portal_terms', 'terms_function');
     add_submenu_page('', 'Warranty Products', 'Edit terms //temp', 'manage_options', 'wportal_terms', 'edit_terms_function');
+   
+    //Delete function for admin section
+    add_submenu_page('', 'Warranty Products', 'Delete items //temp', 'manage_options', 'wportal_delete', 'delete_function');
 }
 
 function dashboard_function() {
@@ -58,4 +61,8 @@ function terms_function() {
 
 function edit_terms_function() {
     require_once WPORTAL__PLUGIN_DIR . './functions/editterms.php';
+}
+
+function delete_function() {
+    require_once WPORTAL__PLUGIN_DIR . './functions/delete.php';
 }

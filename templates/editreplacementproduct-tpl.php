@@ -64,6 +64,13 @@
             <input type="submit" value="Submit">
         </form>
     </div>
+    <?php if ($product != 'new') { ?>
+        <div>
+            <hr>
+            <h3>To delete the product please click below.</h3>
+            <a href="<?php echo admin_url("admin.php?page=wportal_delete&item=replacement&id=$product_id&name=$product_name"); ?>"><button>Delete this product</button></a>
+        </div>
+    <?php } ?>
 </div>
 <script>
     function select_product_image() {
