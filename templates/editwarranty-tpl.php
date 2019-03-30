@@ -18,4 +18,11 @@
             <input type="submit" value="Submit">
         </form>
     </div>
+    <?php if ($warranty != 'new') { ?>
+        <div>
+            <hr>
+            <h3>To delete the product please click below.</h3>
+            <a href="<?php echo admin_url("admin.php?page=wportal_delete&item=warranty&id=$warranty_id&name=$warranty_name"); ?>"><button>Delete this Warranty</button></a>
+        </div>
+    <?php } ?>
 </div>

@@ -20,6 +20,13 @@
             <input type="submit" value="Submit">
         </form>
     </div>
+    <?php if ($terms != 'new') { ?>
+        <div>
+            <hr>
+            <h3>To delete the product please click below.</h3>
+            <a href="<?php echo admin_url("admin.php?page=wportal_delete&item=terms&id=$terms_id&name=$terms_name"); ?>"><button>Delete this T&C</button></a>
+        </div>
+    <?php } ?>
 </div>
 <script>
     function select_terms_document() {
