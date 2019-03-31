@@ -1,9 +1,4 @@
-<?php
-$user_id = get_current_user_id();
-global $wpdb;
-$sql = "SELECT b.`name` AS product_name , b.`image` AS product_image, `purchase_date`, `expiry_date`, `serial_number`,a.id as record_id FROM `wp_wportal_customer_records` a JOIN `wp_wportal_products` b ON a.product=b.id WHERE `user_id`='$user_id' ORDER BY purchase_date DESC";
-$results = $wpdb->get_results($sql);
-?>
+<?php ?>
 <style>
     .c100{
         width: 100%;
@@ -70,23 +65,20 @@ $results = $wpdb->get_results($sql);
                 $warranty = '<span style="color:Red;">Expired!</span>';
             }
             ?>
-            <a class="simple-links" href="<?php echo site_url() . '/record/?record=' . $item->record_id; ?>">
-                <div class="record-container" style="">
-                    <div class="c50" style="background-image: url('<?php echo $item->product_image; ?>');background-size: cover;height: 100%"></div>
-                    <div class="c50 record-information" style="height: 100%;text-align: left;padding: 10px">
-                        <div class="c100"><p><span class="product-title"><?php echo $item->product_name; ?></span></p></div>
-                        <div class="c100"><p><span class="info-title">In Warranty: </span><?php echo $warranty; ?></p></div>
-                        <div class="c100"><p><span class="info-title">Expiration: </span><?php echo $item->expiry_date; ?></p></div>
-                        <div class="c100"><p><span class="info-title">Purchase: </span><?php echo $item->purchase_date; ?></p></div>
-                        <div class="c100"><p><span class="info-title">Serial: </span><?php echo $item->serial_number; ?></p></div>
+            <div class="record-container" style="">
+                <div class="c50" style="background-image: url('<?php echo $item->product_image; ?>');background-size: cover;height: 100%"></div>
+                <div class="c50 record-information" style="height: 100%;text-align: left;padding: 10px">
+                    <div class="c100"><p><span class="product-title"><?php echo $item->product_name; ?></span></p></div>
+                    <div class="c100"><p><span class="info-title">In Warranty: </span><?php echo $warranty; ?></p></div>
+                    <div class="c100"><p><span class="info-title">Expiration: </span><?php echo $item->expiry_date; ?></p></div>
+                    <div class="c100"><p><span class="info-title">Purchase: </span><?php echo $item->purchase_date; ?></p></div>
+                    <div class="c100"><p><span class="info-title">Serial: </span><?php echo $item->serial_number; ?></p></div>
 
-                    </div>
                 </div>
-            </a>
+            </div>
             <?php
         }
         ?>
-        <div style="width: 400px;height: 10px;margin: 5px;box-shadow: 0px 0px 0px 0px grey;display: inline-block;vertical-align: top;"></div>
+
     </div>
-</div>
 </div>
