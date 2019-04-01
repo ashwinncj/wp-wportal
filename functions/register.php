@@ -3,23 +3,36 @@
 function register_function() {
     ob_start();
     if (is_user_logged_in()) {
+        $user_meta = (get_user_meta(get_current_user_id()));
         echo 'You are already Logged in! ' . '<a href=' . wp_logout_url(home_url()) . '>Logout</a> ';
     } else {
-        if (isset($_POST['user_email']) && isset($_POST['user_password']) && isset($_POST['user_mobile']) && isset($_POST['register'])) {
-            $username = uniqid('radel-user');
+        if (isset($_POST['user_email']) && isset($_POST['user_password']) && isset($_POST['user_phone']) && isset($_POST['register'])) {
+            $username = uniqid('ecopure-user');
             $user_id = username_exists($username);
             if (!$user_id and email_exists($_POST['user_email']) == false) {
-
                 $userdata = array(
                     'user_email' => $_POST['user_email'],
                     'user_login' => $username,
                     'user_pass' => $_POST['user_password'],
-                    'role' => 'radelcustomer',
-                    'first_name' => $_POST['full_name'],
-                    'display_name' => $_POST['full_name'],
+                    'role' => 'ecopurecustomer',
+                    'first_name' => isset($_POST['first_name']) ? $_POST['first_name'] : '',
+                    'last_name' => isset($_POST['last_name']) ? $_POST['last_name'] : '',
+                    'display_name' => isset($_POST['first_name']) ? $_POST['first_name'] : '',
                 );
                 $user_id = wp_insert_user($userdata);
-                update_user_meta($user_id, 'user_mobie', $_POST['user_mobile']);
+                $metas = array(
+                    'user_email' => $_POST['user_email'],
+                    'user_phone' => isset($_POST['user_phone']) ? $_POST['user_phone'] : '',
+                    'address_line_1' => isset($_POST['address_line_1']) ? $_POST['address_line_1'] : '',
+                    'address_line_2' => isset($_POST['address_line_2']) ? $_POST['address_line_2'] : '',
+                    'city' => isset($_POST['city']) ? $_POST['city'] : '',
+                    'user_state' => isset($_POST['user_state']) ? $_POST['user_state'] : '',
+                    'zip_code' => isset($_POST['zip_code']) ? $_POST['zip_code'] : ''
+                );
+
+                foreach ($metas as $key => $value) {
+                    update_user_meta($user_id, $key, $value);
+                }
                 echo 'User Successfully Registered.';
                 //print_r(get_user_meta($user_id));
             } else {

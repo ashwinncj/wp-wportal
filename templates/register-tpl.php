@@ -1,13 +1,102 @@
 <!--//Registration form template-->
-
+<style>
+    select{
+        width: 100%;
+    }
+</style>
 <div class="wrap">
-    <h3>Register</h3>
     <form action="" method="POST">
-        <input type="text" required name="full_name" placeholder="Your Full Name"><br>
-        <input type="text" required name="user_mobile" placeholder="Your Mobile Number"  pattern="[0-9]{10}" title="Enter a valid Mobile number"><br>
-        <input type="email" required name="user_email" placeholder="Your Email"><br>
-        <input type="password" required name="user_password" placeholder="Password"><br>
         <input type="text" value="true" name="register" required hidden>
+        <label>Email*</label><br>
+        <input type="email" required name="user_email" ><br>
+        <label>Password*</label><br>
+        <input type="password" required name="user_password"><br>
+        <label>Re-Type Password*</label><br>
+        <input type="password" required name="retype_password"><br>
+        <label>First Name*</label><br>
+        <input type="text" required name="first_name"><br>
+        <label>Last Name*</label><br>
+        <input type="text" name="last_name" ><br>
+        <label>Phone*</label><br>
+        <input type="text" required name="user_phone" pattern="[0-9+ ].{3,}" title="Please enter in the format +1 12345678"><br>
+        <label>Address Line 1*</label><br>
+        <input type="text" required name="address_line_1" ><br>
+        <label>Address Line 2</label><br>
+        <input type="text" name="address_line_2" ><br>
+        <label>City*</label><br>
+        <input type="text" required name="city"><br>
+        <label>State / Province*</label><br>
+        <select class="form-control" name="user_state" required="">
+            <option value="" selected="selected" disabled> - Province - </option>
+            <option value="AB">Alberta</option>
+            <option value="BC">British Columbia</option>
+            <option value="MB">Manitoba</option>
+            <option value="NB">New Brunswick</option>
+            <option value="NL">Newfoundland and Labrador</option>
+            <option value="NS">Nova Scotia</option>
+            <option value="NT">Northwest Territories</option>
+            <option value="NU">Nunavut</option>
+            <option value="ON">Ontario</option>
+            <option value="PE">Prince Edward Island</option>
+            <option value="QC">Quebec</option>
+            <option value="SK">Saskatchewan</option>
+            <option value="YT">Yukon</option>
+            <option value="" disabled> - States - </option>
+            <option value="AL">Alabama</option> 
+            <option value="AK">Alaska</option> 
+            <option value="AZ">Arizona</option> 
+            <option value="AR">Arkansas</option> 
+            <option value="CA">California</option> 
+            <option value="CO">Colorado</option> 
+            <option value="CT">Connecticut</option> 
+            <option value="DE">Delaware</option> 
+            <option value="DC">District Of Columbia</option> 
+            <option value="FL">Florida</option> 
+            <option value="GA">Georgia</option> 
+            <option value="HI">Hawaii</option> 
+            <option value="ID">Idaho</option> 
+            <option value="IL">Illinois</option> 
+            <option value="IN">Indiana</option> 
+            <option value="IA">Iowa</option> 
+            <option value="KS">Kansas</option> 
+            <option value="KY">Kentucky</option> 
+            <option value="LA">Louisiana</option> 
+            <option value="ME">Maine</option> 
+            <option value="MD">Maryland</option> 
+            <option value="MA">Massachusetts</option> 
+            <option value="MI">Michigan</option> 
+            <option value="MN">Minnesota</option> 
+            <option value="MS">Mississippi</option> 
+            <option value="MO">Missouri</option> 
+            <option value="MT">Montana</option> 
+            <option value="NE">Nebraska</option> 
+            <option value="NV">Nevada</option> 
+            <option value="NH">New Hampshire</option> 
+            <option value="NJ">New Jersey</option> 
+            <option value="NM">New Mexico</option> 
+            <option value="NY">New York</option> 
+            <option value="NC">North Carolina</option> 
+            <option value="ND">North Dakota</option> 
+            <option value="OH">Ohio</option> 
+            <option value="OK">Oklahoma</option> 
+            <option value="OR">Oregon</option> 
+            <option value="PA">Pennsylvania</option> 
+            <option value="RI">Rhode Island</option> 
+            <option value="SC">South Carolina</option> 
+            <option value="SD">South Dakota</option> 
+            <option value="TN">Tennessee</option> 
+            <option value="TX">Texas</option> 
+            <option value="UT">Utah</option> 
+            <option value="VT">Vermont</option> 
+            <option value="VA">Virginia</option> 
+            <option value="WA">Washington</option> 
+            <option value="WV">West Virginia</option> 
+            <option value="WI">Wisconsin</option> 
+            <option value="WY">Wyoming</option>
+        </select>
+        <label>Zip Code*</label><br>
+        <input type="text" required name="zip_code"><br>
+        <label></label><br>
 <!--<input type="password" required name="confirm_password" placeholder="Confirm Password">-->
         <input type="submit" value="Register"><br>
     </form>

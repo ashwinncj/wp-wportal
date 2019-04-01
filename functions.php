@@ -79,7 +79,7 @@ add_action('admin_init', 'no_admin_access', 100);
 
 function no_admin_access() {
     $user = wp_get_current_user();
-    if (in_array('csr', (array) $user->roles) || in_array('radelcustomer', (array) $user->roles)) {
+    if (in_array('csr', (array) $user->roles) || in_array('ecopurecustomer', (array) $user->roles)) {
         wp_redirect(home_url());
         exit();
     }
