@@ -42,6 +42,8 @@ function create_database() {
     $results = $wpdb->get_results($sql);
     $sql = 'CREATE TABLE IF NOT EXISTS `wp_wportal_customer_records` ( `id` INT NOT NULL AUTO_INCREMENT , `user_id` VARCHAR(20) NOT NULL , `product` INT(10) NOT NULL , `purchase_date` DATE NOT NULL , `install_date` DATE NOT NULL , `expiry_date` DATE NOT NULL , `serial_number` VARCHAR(100) NOT NULL , `receipt` VARCHAR(200) NOT NULL , `added_on` DATETIME NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;';
     $results = $wpdb->get_results($sql);
+    $sql = 'CREATE TABLE IF NOT EXISTS `wp_wportal_extension_records` ( `id` INT NOT NULL AUTO_INCREMENT , `user_id` VARCHAR(20) NOT NULL ,`record_id` INT(10) NOT NULL, `product` INT(10) NOT NULL , `purchase_date` DATE NOT NULL , `install_date` DATE NOT NULL , `serial_number` VARCHAR(100) NOT NULL , `receipt` VARCHAR(200) NOT NULL , `added_on` DATETIME NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;';
+    $results = $wpdb->get_results($sql);
 }
 
 function create_directories() {

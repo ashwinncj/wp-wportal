@@ -47,6 +47,19 @@
     .record-container:hover{
         box-shadow: 1px 1px 8px 1px grey;
     }
+    #ecopure-register-product-form select{
+        width: 100%;
+    }
+    #ecopure-register-product-form{
+        text-align: left;
+    }
+    #ecopure-register-product-form label{
+        font-weight: bold;
+    }
+    #ecopure-register-product-form input[name="serial_number"]{
+        text-transform: uppercase;
+    }
+
 </style>
 <div class="wrap">
     <a href="#">Go Back</a>
@@ -77,8 +90,9 @@
                     <span style="font-size: 20px;">Serial: <?php echo $item->serial_number; ?></span><br>
                 </div>
             </div>
-        <br>
+            <br>
             <?php
+            //Lifetime Extension Section
             if ($item->lifetime_warranty) {
                 ?>
                 <div class="c100">
@@ -86,6 +100,36 @@
                         <span style="font-size: 24px">Additional warranty extension receipts.</span>
                         <br>
                         <button class="" style="cursor: pointer;color: #fff;border: none;padding: 10px;background-color: #00abee;">Add additional receipt</button><br>
+                    </div>
+                    <div class="c100">
+                        <div class="c40">
+                            <form id="ecopure-register-product-form" action="" method="POST" enctype="multipart/form-data">
+                                <input type="text" value="true" name="register_additional_product" hidden required>
+                                <input type="text" value="<?php echo $user_id; ?>" name="user_id" required hidden>
+                                <input type="text" value="<?php echo $record_id; ?>" name="record_id" required hidden>
+                                <label>Extension Product</label><br>
+                                <select name="product" required>
+                                    <option selected disabled value="">Select your product</option>
+                                    <?php
+                                    global $wpdb;
+                                    $sql = "SELECT `id`, `name` FROM `wp_wportal_replacement_products` WHERE 1";
+                                    $results = $wpdb->get_results($sql);
+                                    foreach ($results as $rep_product) {
+                                        echo "<option value='$rep_product->id'>$rep_product->name</option>";
+                                    }
+                                    ?>
+                                </select><br>
+                                <label>Purchase Date</label><br>
+                                <input type="date" name="purchase_date" required><br>
+                                <label>Install Date</label><br>
+                                <input type="date" name="install_date" required><br>
+                                <label>Serial Number</label><br>
+                                <input type="text" name="serial_number" required><br>
+                                <label>Purchase Receipt</label><br>
+                                <input type="file" multiple="false" name="purchase_receipt" required><br>
+                                <input type="submit" value="Update"><br>
+                            </form>
+                        </div>
                     </div>
                     <div class="record-container" style="">
                         <div class="c50" style="background-image: url('<?php echo $item->product_image; ?>');background-size: cover;height: 100%"></div>
