@@ -89,4 +89,3 @@ $results = $wpdb->get_results($sql);
         <div style="width: 400px;height: 10px;margin: 5px;box-shadow: 0px 0px 0px 0px grey;display: inline-block;vertical-align: top;"></div>
     </div>
 </div>
-</div>

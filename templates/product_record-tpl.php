@@ -49,6 +49,7 @@
     }
 </style>
 <div class="wrap">
+    <a href="#">Go Back</a>
     <div class="c100" style="text-align: center;">
         <?php
         foreach ($results as $item) {
@@ -65,18 +66,46 @@
                 $warranty = '<span style="color:Red;">Expired!</span>';
             }
             ?>
-            <div class="record-container" style="">
-                <div class="c50" style="background-image: url('<?php echo $item->product_image; ?>');background-size: cover;height: 100%"></div>
-                <div class="c50 record-information" style="height: 100%;text-align: left;padding: 10px">
-                    <div class="c100"><p><span class="product-title"><?php echo $item->product_name; ?></span></p></div>
-                    <div class="c100"><p><span class="info-title">In Warranty: </span><?php echo $warranty; ?></p></div>
-                    <div class="c100"><p><span class="info-title">Expiration: </span><?php echo $item->expiry_date; ?></p></div>
-                    <div class="c100"><p><span class="info-title">Purchase: </span><?php echo $item->purchase_date; ?></p></div>
-                    <div class="c100"><p><span class="info-title">Serial: </span><?php echo $item->serial_number; ?></p></div>
-
+            <div class="c100" style="text-align: left;min-height: 300px">
+                <div class="c50" style="background-image: url('<?php echo $item->product_image; ?>');background-size: cover;height: 300px;background-position: center"></div>
+                <div class="c50" style="padding: 25px;height: 100%">
+                    <span style="font-size: 28px;"><?php echo $item->product_name; ?></span><br>
+                    <span style="font-size: 20px;">Warranty: <?php echo $warranty; ?></span><br>
+                    <span style="font-size: 20px;">Expiration: <?php echo $item->expiry_date; ?></span><br>
+                    <span style="font-size: 20px;">Purchase: <?php echo $item->purchase_date; ?></span><br>
+                    <span style="font-size: 20px;">Install: <?php echo $item->install_date; ?></span><br>
+                    <span style="font-size: 20px;">Serial: <?php echo $item->serial_number; ?></span><br>
                 </div>
             </div>
+        <br>
             <?php
+            if ($item->lifetime_warranty) {
+                ?>
+                <div class="c100">
+                    <div class="c100" style="text-align: left;">
+                        <span style="font-size: 24px">Additional warranty extension receipts.</span>
+                        <br>
+                        <button class="" style="cursor: pointer;color: #fff;border: none;padding: 10px;background-color: #00abee;">Add additional receipt</button><br>
+                    </div>
+                    <div class="record-container" style="">
+                        <div class="c50" style="background-image: url('<?php echo $item->product_image; ?>');background-size: cover;height: 100%"></div>
+                        <div class="c50 record-information" style="height: 100%;text-align: left;padding: 10px">
+                            <div class="c100"><p><span class="product-title"><?php echo $item->product_name; ?></span></p></div>
+                            <div class="c100"><p><span class="info-title">Purchase: </span><?php echo $item->purchase_date; ?></p></div>
+                            <div class="c100"><p><span class="info-title">Serial: </span><?php echo $item->serial_number; ?></p></div>
+                        </div>
+                    </div>
+                    <div style="width: 400px;height: 10px;margin: 5px;box-shadow: 0px 0px 0px 0px grey;display: inline-block;vertical-align: top;"></div>
+                </div>             
+                <?php
+            }
+            if ($item->five_year_warranty) {
+                ?>
+                <div class="c100">
+                    Five Year
+                </div>
+                <?php
+            }
         }
         ?>
 
