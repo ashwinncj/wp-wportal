@@ -10,9 +10,11 @@ function register_product_function() {
                 echo "The purchase receipt seems to be invalid format or too large(above 5Mb).";
             } else {
                 register_customer_product($_POST);
+                show_registration_form();
             }
         } else {
             echo 'Seems like your the serial number already exists on your account. Please check the infomation.';
+            show_registration_form();
         }
     } else {
         show_registration_form();

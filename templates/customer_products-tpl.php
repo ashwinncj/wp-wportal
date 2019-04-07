@@ -42,8 +42,8 @@ $results = $wpdb->get_results($sql);
         color: inherit;
     }
     .record-container{
-        width: 400px;
-        height: 225px;
+        width: 450px;
+        height: 250px;
         margin: 5px;
         box-shadow: 1px 0px 3px 1px grey;
         display: inline-block;
@@ -54,6 +54,9 @@ $results = $wpdb->get_results($sql);
     }
 </style>
 <div class="wrap">
+    <div class="c100" style="text-align: left;">
+        <a href="#ecopure-register-product" data-lity><button style="margin-bottom: 15px;cursor: pointer;color: #fff;border: none;padding: 10px;background-color: #00abee;width: 200px;text-transform: uppercase">Register your product</button></a><br>
+    </div>
     <div class="c100" style="text-align: center;">
         <?php
         foreach ($results as $item) {
@@ -72,7 +75,7 @@ $results = $wpdb->get_results($sql);
             ?>
             <a class="simple-links" href="<?php echo site_url() . '/record/?record=' . $item->record_id; ?>">
                 <div class="record-container" style="">
-                    <div class="c50" style="background-image: url('<?php echo $item->product_image; ?>');background-size: cover;height: 100%"></div>
+                    <div class="c50" style="background-image: url('<?php echo $item->product_image; ?>');background-size: contain;background-repeat: no-repeat;background-position: center;height: 100%"></div>
                     <div class="c50 record-information" style="height: 100%;text-align: left;padding: 10px">
                         <div class="c100"><p><span class="product-title"><?php echo $item->product_name; ?></span></p></div>
                         <div class="c100"><p><span class="info-title">In Warranty: </span><?php echo $warranty; ?></p></div>

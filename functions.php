@@ -11,8 +11,12 @@ function plugin_styles() {
     wp_register_script('radel-js', WPORTAL__PLUGIN_URL . '/assets/js/radel-js.js', false, '1.1', 'all');
     wp_register_script('datatables-js', WPORTAL__PLUGIN_URL . '/assets/js/datatables.min.js', false, '1.1', 'all');
     wp_register_style('datatables-css', WPORTAL__PLUGIN_URL . '/assets/css/datatables.min.css', false, '1.1', 'all');
+    wp_register_style('lity-css', WPORTAL__PLUGIN_URL . '/assets/css/lity.min.css', false, '1.1', 'all');
+    wp_register_script('lity-js', WPORTAL__PLUGIN_URL . '/assets/js/lity.min.js', false, '1.1', 'all');
     wp_enqueue_style('radel-css');
+    wp_enqueue_style('lity-css');
     wp_enqueue_script('media-uploader');
+    wp_enqueue_script('lity-js');
     wp_enqueue_script('radel-js');
     wp_enqueue_media();
 }
@@ -42,7 +46,9 @@ function create_database() {
     $results = $wpdb->get_results($sql);
     $sql = 'CREATE TABLE IF NOT EXISTS `wp_wportal_customer_records` ( `id` INT NOT NULL AUTO_INCREMENT , `user_id` VARCHAR(20) NOT NULL , `product` INT(10) NOT NULL , `purchase_date` DATE NOT NULL , `install_date` DATE NOT NULL , `expiry_date` DATE NOT NULL , `serial_number` VARCHAR(100) NOT NULL , `receipt` VARCHAR(200) NOT NULL , `added_on` DATETIME NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;';
     $results = $wpdb->get_results($sql);
-    $sql = 'CREATE TABLE IF NOT EXISTS `wp_wportal_extension_records` ( `id` INT NOT NULL AUTO_INCREMENT , `user_id` VARCHAR(20) NOT NULL ,`record_id` INT(10) NOT NULL, `product` INT(10) NOT NULL , `purchase_date` DATE NOT NULL , `install_date` DATE NOT NULL , `serial_number` VARCHAR(100) NOT NULL , `receipt` VARCHAR(200) NOT NULL , `added_on` DATETIME NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;';
+//    $sql = 'CREATE TABLE IF NOT EXISTS `wp_wportal_extension_records` ( `id` INT NOT NULL AUTO_INCREMENT , `user_id` VARCHAR(20) NOT NULL ,`record_id` INT(10) NOT NULL, `product` INT(10) NOT NULL , `purchase_date` DATE NOT NULL , `install_date` DATE NOT NULL , `serial_number` VARCHAR(100) NOT NULL , `receipt` VARCHAR(200) NOT NULL , `added_on` DATETIME NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;';
+//    $results = $wpdb->get_results($sql);
+    $sql = 'CREATE TABLE IF NOT EXISTS `wp_wportal_extension_receipts` ( `id` INT NOT NULL AUTO_INCREMENT , `user_id` VARCHAR(20) NOT NULL ,`record_id` INT(10) NOT NULL, `purchase_date` DATE NOT NULL , `receipt` VARCHAR(200) NOT NULL ,`nonce` VARCHAR(20) NOT NULL, `packages` INT(10) NOT NULL, `added_on` DATETIME NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;';
     $results = $wpdb->get_results($sql);
 }
 

@@ -23,8 +23,15 @@ $user_id = get_current_user_id();
     #ecopure-register-product-form select{
         width: 100%;
     }
+    #ecopure-register-product-form{
+        padding: 20px;  
+        width: 350px;
+        margin-top: 20px;
+        background-color: #5284ab;
+    }
     #ecopure-register-product-form label{
         font-weight: bold;
+        color: whitesmoke;
     }
     #ecopure-register-product-form input[name="serial_number"]{
         text-transform: uppercase;
@@ -32,7 +39,7 @@ $user_id = get_current_user_id();
 
 </style>
 <div class="wrap">
-    <div class="c100">
+    <div class="c100 lity-hide" id="ecopure-register-product">
         <form id="ecopure-register-product-form" action="" method="POST" enctype="multipart/form-data">
             <input type="text" value="true" name="register_new_product" hidden required>
             <input type="text" value="<?php echo $user_id; ?>" name="user_id" required hidden>
