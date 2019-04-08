@@ -12,7 +12,12 @@ function signon_function() {
         if (is_wp_error($user)) {
             echo $user->get_error_message();
         } else {
-            wp_redirect(admin_url());
+            if (current_user_can('edit_ecopurecustomer')) {
+                wp_redirect(admin_url());
+            } else {
+                wp_redirect(site_url() . '/dashboard');
+            }
+
             exit();
         }
     } else {

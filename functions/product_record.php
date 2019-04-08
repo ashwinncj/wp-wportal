@@ -77,7 +77,7 @@ function calculate_expiry_date($record_id) {
     foreach ($result as $item) {
         $replacement_purchase = new DateTime($item->purchase_date);
         $interval = $replacement_purchase->diff($expiry_tracking);
-        if ($interval->days < 365) {
+        if ($interval->days < 360) {
             $expiry_tracking = $expiry_tracking->add(new DateInterval("P" . $item->packages * 3 . "M"));
         }
     }

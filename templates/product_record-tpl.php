@@ -52,12 +52,20 @@
     }
     #ecopure-register-product-form{
         text-align: left;
+        width: 350px;
+        padding: 20px;
+        margin-top: 25px;
+        background-color: #5284ab;
     }
     #ecopure-register-product-form label{
         font-weight: bold;
+        color: whitesmoke;
     }
     #ecopure-register-product-form input[name="serial_number"]{
         text-transform: uppercase;
+    }
+    #ecopure-extend-product{
+        
     }
 
 </style>
@@ -98,7 +106,7 @@
                 <div class="c100" style="text-align: left;">
                     <span style="font-size: 24px">Additional warranty extension receipts.</span>
                     <br>
-                    <button class="" style="cursor: pointer;color: #fff;border: none;padding: 10px;background-color: #00abee;">Add extension receipt</button><br>
+                    <a href="#ecopure-extend-product" data-lity><button class="" style="cursor: pointer;color: #fff;border: none;padding: 10px;background-color: #00abee;">Add extension receipt</button></a><br>
                 </div>
                 <?php
             }
@@ -107,13 +115,13 @@
                 <div class="c100" style="text-align: left;">
                     <span style="font-size: 24px">Additional warranty extension receipts.</span>
                     <br>
-                    <button class="" style="cursor: pointer;color: #fff;border: none;padding: 10px;background-color: #00abee;">Extend Parts Warranty</button><br>
+                    <a href="#ecopure-extend-product" data-lity><button class="" style="cursor: pointer;color: #fff;border: none;padding: 10px;background-color: #00abee;">Extend Parts Warranty</button></a><br>
                 </div>
                 <?php
             }
             ?>
             <div class="c100">
-                <div class="c100">
+                <div id="ecopure-extend-product" class="c100 lity-hide">
                     <div class="c40">
                         <form id="ecopure-register-product-form" action="" method="POST" enctype="multipart/form-data">
                             <input type="text" value="true" name="register_additional_receipt" hidden required>

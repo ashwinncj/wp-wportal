@@ -3,21 +3,23 @@
 //Customer Portal Function
 function register_product_function() {
     ob_start();
-    if (isset($_POST['register_new_product'])) {
-        if (!check_if_record_exists($_POST)) {
-            $_POST['purchase_receipt'] = upload_files($_FILES['purchase_receipt']);
-            if (!$_POST['purchase_receipt']) {
-                echo "The purchase receipt seems to be invalid format or too large(above 5Mb).";
+    if (is_user_logged_in()) {
+        if (isset($_POST['register_new_product'])) {
+            if (!check_if_record_exists($_POST)) {
+                $_POST['purchase_receipt'] = upload_files($_FILES['purchase_receipt']);
+                if (!$_POST['purchase_receipt']) {
+                    echo "The purchase receipt seems to be invalid format or too large(above 5Mb).";
+                } else {
+                    register_customer_product($_POST);
+                    show_registration_form();
+                }
             } else {
-                register_customer_product($_POST);
+                echo 'Seems like your the serial number already exists on your account. Please check the infomation.';
                 show_registration_form();
             }
         } else {
-            echo 'Seems like your the serial number already exists on your account. Please check the infomation.';
             show_registration_form();
         }
-    } else {
-        show_registration_form();
     }
     return ob_get_clean();
 }

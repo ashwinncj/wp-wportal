@@ -33,6 +33,8 @@ function register_function() {
                 foreach ($metas as $key => $value) {
                     update_user_meta($user_id, $key, $value);
                 }
+                wp_redirect(site_url() . '/dashboard');
+
                 echo 'User Successfully Registered.';
                 //print_r(get_user_meta($user_id));
             } else {
