@@ -110,7 +110,7 @@
                 </div>
                 <?php
             }
-            if ($item->lifetime_warranty) {
+            if ($item->five_year_warranty) {
                 ?>
                 <div class="c100" style="text-align: left;">
                     <span style="font-size: 24px">Additional warranty extension receipts.</span>
@@ -120,7 +120,7 @@
                 <?php
             }
             ?>
-            <div class="c100">
+            <div class="c100" style="margin-top: 25px;">
                 <div id="ecopure-extend-product" class="c100 lity-hide">
                     <div class="c40">
                         <form id="ecopure-register-product-form" action="" method="POST" enctype="multipart/form-data">

@@ -59,7 +59,9 @@ $results = $wpdb->get_results($sql);
     </div>
     <div class="c100" style="text-align: center;">
         <?php
+        $count = 0;
         foreach ($results as $item) {
+            $count++;
             $warranty = '';
             $datediff = strtotime($item->expiry_date) - time();
             $timeleft = round($datediff / (60 * 60 * 24)) + 1;
@@ -87,6 +89,9 @@ $results = $wpdb->get_results($sql);
                 </div>
             </a>
             <?php
+        }
+        if ($count == 0) {
+            echo "<h3>You haven't registered any products yet.</h3>";
         }
         ?>
         <div style="width: 450px;height: 10px;margin: 5px;box-shadow: 0px 0px 0px 0px grey;display: inline-block;vertical-align: top;"></div>

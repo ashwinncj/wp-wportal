@@ -1,11 +1,11 @@
 <!--//Registration form template-->
 <style>
-    select{
+    #radel-register-form input,#radel-register-form select{
         width: 100%;
     }
 </style>
 <div class="wrap">
-    <form action="" method="POST">
+    <form id="radel-register-form" action="" method="POST">
         <input type="text" value="true" name="register" required hidden>
         <label>Email*</label><br>
         <input type="email" required name="user_email" ><br>
@@ -98,6 +98,6 @@
         <input type="text" required name="zip_code"><br>
         <label></label><br>
 <!--<input type="password" required name="confirm_password" placeholder="Confirm Password">-->
-        <input type="submit" value="Register"><br>
+        <input type="submit" value="Register" style="width:180px;"><br>
     </form>
 </div>
