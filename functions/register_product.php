@@ -53,7 +53,7 @@ function register_customer_product($vars) {
     $result = $wpdb->get_row($sql);
     $period = $result->period;
     //Calculating Warranty period here.
-    $expiry_date = date('Y-m-d', strtotime("+$period months"));
+    $expiry_date = date('Y-m-d', strtotime($purchase_date."+$period months"));
     $serial_number = strtoupper($vars['serial_number']);
     $receipt = $vars['purchase_receipt'];
     $added_on = date('Y-m-d H:i:s');
